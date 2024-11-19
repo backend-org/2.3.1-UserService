@@ -5,6 +5,13 @@
 </head>
 <body>
 <h2>Users List</h2>
+<hr/>
+
+<a th:href="@{/users/new}">
+    <button>Create user</button>
+</a>
+<hr/>
+<br/>
 <table border="1">
     <thead>
     <tr>
@@ -17,11 +24,21 @@
     </thead>
     <tbody>
     <tr th:each="user : ${users}">
-        <td th:text="${user.id}"></td>
+        <td><a th:href="@{|/users/${user.id}|}" th:text="${user.id}"></a></td>
         <td th:text="${user.firstName}"></td>
         <td th:text="${user.lastName}"></td>
         <td th:text="${user.email}"></td>
         <td th:text="${user.address}"></td>
+        <td>
+            <a th:href="@{|/users/${user.id}/edit|}">
+                <button>Edit</button>
+            </a>
+        </td>
+        <td>
+            <form th:method="DELETE" th:action="@{|/users/${user.id}|}">
+                <input type="Submit" value="Delete">
+            </form>
+        </td>
     </tr>
     </tbody>
 </table>

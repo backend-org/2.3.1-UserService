@@ -1,4 +1,8 @@
 spring:
+  web:
+    hiddenmethod:
+      filter:
+        enabled: true
   application:
     name: UserService
   datasource:

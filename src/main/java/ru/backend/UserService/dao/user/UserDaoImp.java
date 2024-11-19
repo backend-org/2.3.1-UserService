@@ -21,13 +21,28 @@ public class UserDaoImp implements UserDao {
 
     @Override
     public List<User> listUsers() {
-        TypedQuery<User> query = entityManager.createQuery("from User", User.class);
+        TypedQuery<User> query = entityManager.createQuery("from User u ORDER BY u.id", User.class);
         return query.getResultList();
     }
 
     @Override
     public User getUserById(int id) {
         return entityManager.find(User.class, id);
+    }
+
+    @Override
+    public void edit(int id, User newUser) {
+        User user = entityManager.find(User.class, id);
+        user.setFirstName(newUser.getFirstName());
+        user.setLastName(newUser.getLastName());
+        user.setEmail(newUser.getEmail());
+        user.setAddress(newUser.getAddress());
+    }
+
+    @Override
+    public void delete(int id) {
+        User user = entityManager.find(User.class, id);
+        entityManager.remove(user);
     }
 
 }

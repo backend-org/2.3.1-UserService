@@ -39,9 +39,26 @@ public class UserController {
         return "redirect:/users";
     }
 
+    @GetMapping("/{id}/edit")
+    public String editUserForm(Model model, @PathVariable("id") int id){
+        model.addAttribute("user", userService.getUserById(id));
+        return "users/edit_user";
+    }
+
+    @PatchMapping("/{id}")
+    public String editUser(@ModelAttribute("user") User user, @PathVariable("id") int id){
+        userService.edit(id, user);
+        return "redirect:/users";
+    }
+
+    @DeleteMapping("/{id}")
+    public String deleteUser(@PathVariable("id") int id){
+        userService.delete(id);
+        return "redirect:/users";
+    }
 
     @GetMapping("/fillUsersDb")
-    public String fillUsersTable(Model model) {
+    public String fillUsersTable() {
         userService.add(new User("name1", "surname1", "email1", "address1"));
         userService.add(new User("name2", "surname2", "email2", "address2"));
         userService.add(new User("name3", "surname3", "email3", "address3"));
@@ -49,10 +66,5 @@ public class UserController {
         userService.add(new User("name5", "surname5", "email5", "address5"));
         return "users/users_table";
     }
-
-//    @ExceptionHandler(UserNotFoundException.class)
-//    public ResponseEntity<String> handleBadRequest(UserNotFoundException ex) {
-//        return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
-//    }
 
 }
