@@ -3,7 +3,7 @@ package ru.backend.UserService.services.user;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.backend.UserService.dao.user.UserDao;
+import ru.backend.UserService.repository.user.UserRepository;
 import ru.backend.UserService.model.User;
 
 import java.util.List;
@@ -13,36 +13,36 @@ import java.util.List;
 public class UserServiceImp implements UserService {
 
     @Autowired
-    private UserDao userDao;
+    private UserRepository userRepository;
 
     @Transactional
     @Override
     public void add(User user) {
-        userDao.add(user);
+        userRepository.save(user);
     }
 
     @Transactional(readOnly = true)
     @Override
     public List<User> listUsers() {
-        return userDao.listUsers();
+        return userRepository.findAll();
     }
 
     @Transactional(readOnly = true)
     @Override
     public User getUserById(int id) {
-        return userDao.getUserById(id);
+        return userRepository.findById(id).orElse(null);
     }
 
     @Transactional
     @Override
-    public void edit(int id, User newUser) {
-        userDao.edit(id, newUser);
+    public void edit(User newUser) {
+        userRepository.save(newUser);
     }
 
     @Transactional
     @Override
     public void delete(int id) {
-        userDao.delete(id);
+        userRepository.deleteById(id);
     }
 
 }
