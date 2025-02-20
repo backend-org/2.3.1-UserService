@@ -1,13 +1,64 @@
 <!DOCTYPE html>
-    <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>User</title>
+    <title>User Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            text-align: center;
+            margin: 20px;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            width: 50%;
+            margin: auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h2 {
+            color: #222;
+        }
+
+        p {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 15px;
+            background-color: #444;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+
+        .btn:hover {
+            background-color: #222;
+        }
+    </style>
 </head>
 <body>
-    <p th:text="${user.getFirstName()}">Val</p>
-    <p th:text="${user.getLastName()}">Val</p>
-    <p th:text="${user.getEmail()}">Val</p>
-    <p th:text="${user.getAddress()}">Val</p>
+
+<div class="container">
+    <h2>User Details</h2>
+    <p><strong>First Name:</strong>
+        <span th:text="${user.getFirstName()}">Val</span></p>
+    <p><strong>Last Name:</strong>
+        <span th:text="${user.getLastName()}">Val</span></p>
+    <p><strong>Email:</strong>
+        <span th:text="${user.getEmail()}">Val</span></p>
+    <p><strong>Address:</strong>
+        <span th:text="${user.getAddress()}">Val</span></p>
+
+    <a th:href="@{/users}" class="btn">Back to List</a>
+</div>
+
 </body>
 </html>
-

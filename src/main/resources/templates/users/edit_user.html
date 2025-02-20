@@ -2,23 +2,77 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Edit user</title>
+    <title>Edit User</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            margin: 20px;
+        }
+
+        .form-container {
+            background-color: #fff;
+            padding: 20px;
+            width: 50%;
+            margin: auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h2 {
+            color: #222;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .btn {
+            padding: 10px 15px;
+            background-color: #444;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 100%;
+        }
+
+        .btn:hover {
+            background-color: #222;
+        }
+    </style>
 </head>
 <body>
-<form th:method="PATCH" th:action="@{/users/{id}(id=${user.getId})}" th:object="${user}">
-    <label for="name">Enter firstname:</label>
-    <input type="text" th:field="*{firstName}" id="name">
-    <br/>
-    <label for="secondname">Enter lastname:</label>
-    <input type="text" th:field="*{lastName}" id="secondname">
-    <br/>
-    <label for="email">Enter email:</label>
-    <input type="text" th:field="*{email}" id="email">
-    <br/>
-    <label for="address">Enter address:</label>
-    <input type="text" th:field="*{address}" id="address">
-    <br/>
-    <input type="submit" value="Edit">
-</form>
+
+<div class="form-container">
+    <h2>Edit User</h2>
+    <form th:method="PATCH" th:action="@{/users/{id}(id=${user.getId})}" th:object="${user}">
+        <label for="name">First Name:</label>
+        <input type="text" th:field="*{firstName}" id="name">
+
+        <label for="secondname">Last Name:</label>
+        <input type="text" th:field="*{lastName}" id="secondname">
+
+        <label for="email">Email:</label>
+        <input type="text" th:field="*{email}" id="email">
+
+        <label for="address">Address:</label>
+        <input type="text" th:field="*{address}" id="address">
+
+        <input type="submit" value="Edit" class="btn">
+    </form>
+</div>
+
 </body>
 </html>

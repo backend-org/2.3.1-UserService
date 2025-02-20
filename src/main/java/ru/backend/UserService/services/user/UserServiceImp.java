@@ -10,6 +10,7 @@ import java.util.List;
 
 
 @Service
+@Transactional(readOnly = true)
 public class UserServiceImp implements UserService {
 
     @Autowired
@@ -21,13 +22,11 @@ public class UserServiceImp implements UserService {
         userRepository.save(user);
     }
 
-    @Transactional(readOnly = true)
     @Override
-    public List<User> listUsers() {
+    public List<User> getUsersList() {
         return userRepository.findAll();
     }
 
-    @Transactional(readOnly = true)
     @Override
     public User getUserById(int id) {
         return userRepository.findById(id).orElse(null);

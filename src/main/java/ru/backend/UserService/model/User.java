@@ -16,7 +16,6 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Setter(AccessLevel.PRIVATE)
     private Long id;
 
     @Column(name = "firstName")

@@ -1,18 +1,81 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Users list</title>
+    <title>Users List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 20px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #222;
+        }
+
+        hr {
+            border: 1px solid #ccc;
+        }
+
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #ccc;
+            text-align: left;
+        }
+
+        th {
+            background-color: #333;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        a button, input[type="submit"] {
+            background-color: #444;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            cursor: pointer;
+            font-size: 14px;
+            margin: 5px;
+            border-radius: 4px;
+        }
+
+        a button:hover, input[type="submit"]:hover {
+            background-color: #222;
+        }
+
+        .create-button {
+            display: inline-block;
+            margin: 15px 0;
+        }
+    </style>
 </head>
 <body>
+
 <h2>Users List</h2>
 <hr/>
 
-<a th:href="@{/users/new}">
-    <button>Create user</button>
+<a th:href="@{/users/new}" class="create-button">
+    <button>Create User</button>
 </a>
+
 <hr/>
 <br/>
-<table border="1">
+
+<table>
     <thead>
     <tr>
         <th>ID</th>
@@ -20,6 +83,7 @@
         <th>Surname</th>
         <th>Email</th>
         <th>Address</th>
+        <th>Actions</th>
     </tr>
     </thead>
     <tbody>
@@ -33,15 +97,13 @@
             <a th:href="@{|/users/${user.id}/edit|}">
                 <button>Edit</button>
             </a>
-        </td>
-        <td>
-            <form th:method="DELETE" th:action="@{|/users/${user.id}|}">
-                <input type="Submit" value="Delete">
+            <form th:method="DELETE" th:action="@{|/users/${user.id}|}" style="display:inline;">
+                <input type="submit" value="Delete">
             </form>
         </td>
     </tr>
     </tbody>
 </table>
+
 </body>
 </html>
-
