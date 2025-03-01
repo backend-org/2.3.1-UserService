@@ -30,6 +30,7 @@ public class SecurityConfig {
                         .loginPage("/login") // Кастомная страница логина
                         .loginProcessingUrl("/do-login") // URL для обработки логина
                         .defaultSuccessUrl("/users", true) // Куда перенаправлять после входа
+                        .failureUrl("/login?error") //кладем параметр, чтобы вывести ошибку на форме
                         .permitAll()
                 )
                 .logout(logout -> logout.logoutUrl("/logout").logoutSuccessUrl("/login?logout"));

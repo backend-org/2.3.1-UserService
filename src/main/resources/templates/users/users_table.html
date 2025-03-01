@@ -7,7 +7,8 @@
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
             color: #333;
-            margin: 20px;
+            margin: 0;
+            padding-top: 60px; /* Отступ сверху для хедера */
             text-align: center;
         }
 
@@ -89,6 +90,9 @@
     </script>
 </head>
 <body>
+
+<!-- Вставка общего header -->
+<div th:insert="fragments/header :: header"></div>
 
 <h2>Users List</h2>
 <hr/>
