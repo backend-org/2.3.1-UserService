@@ -28,7 +28,7 @@ public class AppUserServiceImp implements AppUserService {
     }
 
     @Override
-    public AppUser getUserById(int id) {
+    public AppUser getUserById(Long id) {
         return appUserRepository.findById(id).orElse(null);
     }
 
@@ -40,7 +40,7 @@ public class AppUserServiceImp implements AppUserService {
 
     @Transactional
     @Override
-    public void delete(int id) {
+    public void delete(Long id) {
         appUserRepository.deleteById(id);
     }
 

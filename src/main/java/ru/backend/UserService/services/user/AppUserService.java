@@ -11,10 +11,10 @@ public interface AppUserService {
 
     List<AppUser> getUsersList();
 
-    AppUser getUserById(int id);
+    AppUser getUserById(Long id);
 
     void edit(AppUser newUser);
 
-    void delete(int id);
+    void delete(Long id);
 
 }

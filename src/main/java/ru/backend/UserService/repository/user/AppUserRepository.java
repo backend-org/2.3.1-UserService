@@ -5,6 +5,6 @@ import ru.backend.UserService.model.AppUser;
 
 import java.util.Optional;
 
-public interface AppUserRepository extends JpaRepository<AppUser, Integer> {
+public interface AppUserRepository extends JpaRepository<AppUser, Long> {
     Optional<AppUser> findByUserName(String userName);
 }
