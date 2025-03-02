@@ -14,11 +14,6 @@ public class AppUserController {
     @Autowired
     AppUserService userService;
 
-    @GetMapping("/login")
-    public String login() {
-        return "login";
-    }
-
     @GetMapping()
     public String getAllUsers(Model model) {
         model.addAttribute("users", userService.getUsersList());

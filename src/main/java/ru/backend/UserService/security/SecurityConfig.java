@@ -23,7 +23,7 @@ public class SecurityConfig {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/login").permitAll() // Доступ для всех
+                        .requestMatchers("/login", "/register").permitAll() // Доступ для всех
                         .anyRequest().authenticated() // Остальные требуют входа
                 )
                 .formLogin(login -> login

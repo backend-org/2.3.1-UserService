@@ -1,6 +1,7 @@
 package ru.backend.UserService.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,9 +19,11 @@ public class AppUser {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotEmpty
     @Column(name = "username")
     private String userName;
 
+    @NotEmpty
     @Column(name = "password")
     private String password;
 
