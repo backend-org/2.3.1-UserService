@@ -22,7 +22,6 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/login", "/register").permitAll() // Доступ для всех
                         .anyRequest().authenticated() // Остальные требуют входа
@@ -34,7 +33,10 @@ public class SecurityConfig {
                         .failureUrl("/login?error") //кладем параметр, чтобы вывести ошибку на форме
                         .permitAll()
                 )
-                .logout(logout -> logout.logoutUrl("/logout").logoutSuccessUrl("/login?logout"));
+                .logout(logout -> logout
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/login?logout")
+                );
 
         return http.build();
     }
