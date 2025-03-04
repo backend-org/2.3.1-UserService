@@ -3,11 +3,11 @@ package ru.backend.UserService.security;
 
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import ru.backend.UserService.model.AppUser;
 
 import java.util.Collection;
-import java.util.List;
 
 @AllArgsConstructor
 public class AppUserDetails implements UserDetails {
@@ -16,7 +16,9 @@ public class AppUserDetails implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of();
+        return appUser.getRoles().stream()
+                .map(role -> new SimpleGrantedAuthority(role.getName()))
+                .toList();
     }
 
     @Override

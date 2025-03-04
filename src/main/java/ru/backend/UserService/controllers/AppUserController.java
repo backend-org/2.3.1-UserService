@@ -5,14 +5,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.backend.UserService.model.AppUser;
+import ru.backend.UserService.model.Role;
 import ru.backend.UserService.services.user.AppUserService;
+import ru.backend.UserService.services.user.RoleService;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Controller
 @RequestMapping("users")
 public class AppUserController {
 
     @Autowired
-    AppUserService userService;
+    private AppUserService userService;
 
     @GetMapping()
     public String getAllUsers(Model model) {
@@ -34,8 +39,9 @@ public class AppUserController {
     }
 
     @PostMapping
-    public String addUser(@ModelAttribute("user") AppUser user) {
-        userService.add(user);
+    public String addUser(@ModelAttribute("user") AppUser user,
+                          @RequestParam(name = "adminParam", defaultValue = "false") Boolean isAdmin) {
+        userService.add(user, isAdmin);
         return "redirect:/users";
     }
 

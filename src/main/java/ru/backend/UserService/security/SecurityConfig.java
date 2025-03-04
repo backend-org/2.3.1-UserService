@@ -21,6 +21,7 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/login", "/register").permitAll() // Доступ для всех
+                        .requestMatchers("/users").hasRole("USER")
                         .anyRequest().authenticated() // Остальные требуют входа
                 )
                 .formLogin(login -> login

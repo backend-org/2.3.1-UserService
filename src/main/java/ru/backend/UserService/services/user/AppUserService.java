@@ -9,6 +9,8 @@ import java.util.List;
 public interface AppUserService {
     void add(AppUser user);
 
+    void add(AppUser user, boolean isAdmin);
+
     List<AppUser> getUsersList();
 
     AppUser getUserById(Long id);
