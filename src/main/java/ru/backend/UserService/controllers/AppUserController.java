@@ -5,12 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.backend.UserService.model.AppUser;
-import ru.backend.UserService.model.Role;
 import ru.backend.UserService.services.user.AppUserService;
-import ru.backend.UserService.services.user.RoleService;
-
-import java.util.HashSet;
-import java.util.Set;
 
 @Controller
 @RequestMapping("users")
@@ -46,13 +41,13 @@ public class AppUserController {
     }
 
     @GetMapping("/{id}/edit")
-    public String editUserForm(Model model, @PathVariable("id") Long id){
+    public String editUserForm(Model model, @PathVariable("id") Long id) {
         model.addAttribute("user", userService.getUserById(id));
         return "users/edit_user";
     }
 
     @PatchMapping("/edit")
-    public String editUser(@ModelAttribute("user") AppUser user){
+    public String editUser(@ModelAttribute("user") AppUser user) {
         var oldUserData = userService.getUserById(user.getId());
         user.setUserName(oldUserData.getUserName());
         user.setPassword(oldUserData.getPassword());
@@ -61,7 +56,7 @@ public class AppUserController {
     }
 
     @DeleteMapping("/{id}")
-    public String deleteUser(@PathVariable("id") Long id){
+    public String deleteUser(@PathVariable("id") Long id) {
         userService.delete(id);
         return "redirect:/users";
     }

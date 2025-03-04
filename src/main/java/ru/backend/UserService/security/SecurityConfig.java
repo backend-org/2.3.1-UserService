@@ -1,5 +1,6 @@
 package ru.backend.UserService.security;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -15,6 +16,13 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SecurityConfig {
 
+    private SuccessHandler successHandler;
+
+    @Autowired
+    public SecurityConfig(SuccessHandler successHandler) {
+        this.successHandler = successHandler;
+    }
+
     //Настраивает фильтрацию
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -27,9 +35,9 @@ public class SecurityConfig {
                 .formLogin(login -> login
                         .loginPage("/login") // Кастомная страница логина
                         .loginProcessingUrl("/do-login") // URL для обработки логина
-                        .defaultSuccessUrl("/users", true) // Куда перенаправлять после входа
                         .failureUrl("/login?error") //кладем параметр, чтобы вывести ошибку на форме
                         .permitAll()
+                        .successHandler(successHandler)
                 )
                 .logout(logout -> logout
                         .logoutUrl("/logout")

@@ -2,6 +2,7 @@ package ru.backend.UserService.security;
 
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -9,8 +10,10 @@ import ru.backend.UserService.model.AppUser;
 
 import java.util.Collection;
 
+@Getter
 @AllArgsConstructor
 public class AppUserDetails implements UserDetails {
+
 
     private AppUser appUser;
 
