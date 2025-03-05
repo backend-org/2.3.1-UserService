@@ -9,23 +9,26 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import ru.backend.UserService.model.AppUser;
 import ru.backend.UserService.services.user.AppUserService;
+import ru.backend.UserService.services.user.RoleService;
 
 @Controller
 public class AuthController {
 
     private final AppUserService appUserService;
     private final PasswordEncoder passwordEncoder;
+    private final RoleService roleService;
 
-    public AuthController(AppUserService appUserService, PasswordEncoder passwordEncoder) {
+    public AuthController(AppUserService appUserService, PasswordEncoder passwordEncoder, RoleService roleService) {
         this.appUserService = appUserService;
         this.passwordEncoder = passwordEncoder;
+        this.roleService = roleService;
     }
 
     @Autowired
 
 
     @GetMapping("/login")
-    public String loginPage(){
+    public String loginPage() {
         return "auth/login.html";
     }
 
@@ -36,8 +39,7 @@ public class AuthController {
 
     @PostMapping("/register")
     public String registerUser(@ModelAttribute("user") @Valid AppUser appuser) {
-        appuser.setPassword(passwordEncoder.encode(appuser.getPassword()));
-        appUserService.add(appuser);
+        appUserService.add(appuser, false);
         return "redirect:/login";
     }
 }
