@@ -45,13 +45,13 @@ public class AdminController {
         user.setUserName(oldUserData.getUserName());
         user.setPassword(oldUserData.getPassword());
         userService.edit(user);
-        return "redirect:/users";
+        return "redirect:/admin/users";
     }
 
     @DeleteMapping("/{id}")
     public String deleteUser(@PathVariable("id") Long id) {
         userService.delete(id);
-        return "redirect:/users";
+        return "redirect:/admin/users";
     }
 
 }

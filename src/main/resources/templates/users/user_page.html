@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
     <title>User Details</title>
     <style>
@@ -56,8 +57,19 @@
         <span th:text="${user.getEmail()}">Val</span></p>
     <p><strong>Address:</strong>
         <span th:text="${user.getAddress()}">Val</span></p>
+    <p><strong>Username:</strong>
+        <span th:text="${user.getUserName()}">Val</span></p>
 
-    <a th:href="@{/admin/users}" class="btn">Back to List</a>
+    <!-- Вывод списка ролей -->
+    <p><strong>Roles:</strong>
+        <span th:each="role : ${user.roles}">
+            <span th:text="${role.authority}"></span>
+        </span>
+    </p>
+
+    <div sec:authorize="hasAuthority('ROLE_ADMIN')">
+        <a th:href="@{/admin/users}" class="btn">Back to List</a>
+    </div>
 </div>
 
 </body>
