@@ -97,7 +97,7 @@
 <h2>Users List</h2>
 <hr/>
 
-<a th:href="@{/users/new}" class="create-button">
+<a th:href="@{/admin/users/new}" class="create-button">
     <button>Create User</button>
 </a>
 
@@ -123,10 +123,10 @@
         <td th:text="${user.email}"></td>
         <td th:text="${user.address}"></td>
         <td>
-            <a th:href="@{|/users/${user.id}/edit|}">
+            <a th:href="@{|/admin/users/${user.id}/edit|}">
                 <button>Edit</button>
             </a>
-            <form th:method="DELETE" th:action="@{|/users/${user.id}|}" style="display:inline;">
+            <form th:method="DELETE" th:action="@{|/admin/users/${user.id}|}" style="display:inline;">
                 <input type="submit" value="Delete">
             </form>
         </td>

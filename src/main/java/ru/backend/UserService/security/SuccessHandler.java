@@ -31,7 +31,7 @@ public class SuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
         // Определяем куда перенаправлять пользователя
         String targetUrl = "";
         if (authorities.stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"))) {
-            targetUrl = "/users";
+            targetUrl = "/admin/users";
         } else if (authorities.stream().anyMatch(a -> a.getAuthority().equals("ROLE_USER"))) {
             targetUrl = "/users/" + userId;
         }

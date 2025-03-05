@@ -57,7 +57,7 @@
 
 <div class="form-container">
     <h2>Edit User</h2>
-    <form th:method="PATCH" th:action="@{/users/edit}" th:object="${user}">
+    <form th:method="PATCH" th:action="@{/admin/users/edit}" th:object="${user}">
         <input type="hidden" th:field="*{id}"/> <!-- Скрытое поле для ID -->
 
         <label for="name">First Name:</label>
