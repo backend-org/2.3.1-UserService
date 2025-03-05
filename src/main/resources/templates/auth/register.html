@@ -74,7 +74,7 @@
 <body>
 <h2>Регистрация</h2>
 <form th:action="@{/register}" method="post" th:object="${user}">
-    <label for="userName">Имя пользователя:</label>
+    <label for="userName">Логин:</label>
     <input type="text" id="userName" th:field="*{userName}" required />
 
     <label for="password">Пароль:</label>
@@ -94,6 +94,10 @@
 
     <button type="submit">Зарегистрироваться</button>
 </form>
+
+<div class="login-link">
+    <p>Уже есть аккаунт? <a th:href="@{/login}">Войти</a></p>
+</div>
 
 <div th:if="${param.error}">
     <p class="error">Пожалуйста, исправьте ошибки в форме</p>

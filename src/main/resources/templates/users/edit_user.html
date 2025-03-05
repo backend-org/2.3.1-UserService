@@ -5,6 +5,7 @@
     <title>Edit User</title>
     <style>
         body {
+            padding-top: 60px; /* Высота хедера + небольшой отступ */
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
             text-align: center;
@@ -54,6 +55,9 @@
     </style>
 </head>
 <body>
+
+<!-- Вставка общего header -->
+<div th:insert="fragments/header :: header"></div>
 
 <div class="form-container">
     <h2>Edit User</h2>

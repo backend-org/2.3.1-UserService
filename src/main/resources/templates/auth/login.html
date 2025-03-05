@@ -85,6 +85,10 @@
     <button type="submit">Войти</button>
 </form>
 
+<div class="login-link">
+    <p>Еще нет аккаунта? <a th:href="@{/register}">Зарегистрироваться</a></p>
+</div>
+
 <div th:if="${param.error}">
     <p class="error">Неверный логин или пароль</p>
 </div>
