@@ -31,4 +31,8 @@ public class RoleServiceImp implements RoleService {
     public Set<Role> getAllRoles() {
         return new HashSet<>(roleRepository.findAll());
     }
+
+    public Set<Role> getRolesByIds(List<Long> roleIds) {
+        return new HashSet<>(roleRepository.findAllById(roleIds));
+    }
 }

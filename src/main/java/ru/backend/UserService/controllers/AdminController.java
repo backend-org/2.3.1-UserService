@@ -6,13 +6,25 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.backend.UserService.model.AppUser;
 import ru.backend.UserService.services.user.AppUserService;
+import ru.backend.UserService.services.user.RoleService;
+
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("admin/users")
 public class AdminController {
 
+    private final AppUserService userService;
+
+    private final RoleService roleService;
+
     @Autowired
-    private AppUserService userService;
+    public AdminController(AppUserService userService, RoleService roleService) {
+        this.userService = userService;
+        this.roleService = roleService;
+    }
 
     @GetMapping
     public String getAllUsers(Model model) {
@@ -36,11 +48,13 @@ public class AdminController {
     @GetMapping("/{id}/edit")
     public String editUserForm(Model model, @PathVariable("id") Long id) {
         model.addAttribute("user", userService.getUserById(id));
+        model.addAttribute("roles", roleService.getAllRoles());
         return "users/edit_user";
     }
 
     @PatchMapping("/edit")
-    public String editUser(@ModelAttribute("user") AppUser user) {
+    public String editUser(@ModelAttribute("user") AppUser user,
+                           @RequestParam(value = "roles", required = false) List<Long> roleIds) {
         var oldUserData = userService.getUserById(user.getId());
         user.setUserName(oldUserData.getUserName());
         user.setPassword(oldUserData.getPassword());

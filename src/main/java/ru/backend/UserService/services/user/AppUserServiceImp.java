@@ -34,6 +34,9 @@ public class AppUserServiceImp implements AppUserService {
     @Transactional
     @Override
     public void add(AppUser user, boolean isAdmin) {
+        if (appUserRepository.existsByUserName(user.getUserName())) {
+            throw new IllegalArgumentException("Пользователь с таким логином уже существует.");
+        }
         if(isAdmin){
             user.setRoles(roleService.getAllRoles());
         }
