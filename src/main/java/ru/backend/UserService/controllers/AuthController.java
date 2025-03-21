@@ -19,14 +19,12 @@ public class AuthController {
     private final PasswordEncoder passwordEncoder;
     private final RoleService roleService;
 
+    @Autowired
     public AuthController(AppUserService appUserService, PasswordEncoder passwordEncoder, RoleService roleService) {
         this.appUserService = appUserService;
         this.passwordEncoder = passwordEncoder;
         this.roleService = roleService;
     }
-
-    @Autowired
-
 
     @GetMapping("/login")
     public String loginPage() {

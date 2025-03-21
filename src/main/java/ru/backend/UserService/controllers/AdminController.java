@@ -9,8 +9,6 @@ import ru.backend.UserService.services.user.AppUserService;
 import ru.backend.UserService.services.user.RoleService;
 
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("admin/users")

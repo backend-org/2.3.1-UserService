@@ -1,4 +1,4 @@
-package ru.backend.UserService.model.dto;
+package ru.backend.UserService.model.dto.requests;
 
 import jakarta.validation.constraints.*;
 import lombok.Getter;
@@ -9,7 +9,9 @@ import java.util.Set;
 
 @Getter
 @Setter
-public class RegisterAppUserDto {
+public class EditAppUserRequestDto {
+    @Min(value = 0, message = "Id редактируемого пользователя должен быть положительным")
+    private Long id;
 
     @NotBlank(message = "Имя пользователя не должно быть пустым")
     @Size(min = 3, max = 20, message = "Имя пользователя должно содержать от 3 до 20 символов")
@@ -34,5 +36,4 @@ public class RegisterAppUserDto {
 
     @NotEmpty(message = "У пользователя должна быть хотя бы одна роль")
     private Set<Role> roles;
-
 }

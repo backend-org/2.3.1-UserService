@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.backend.UserService.exceptions.AddUserException;
 import ru.backend.UserService.model.AppUser;
-import ru.backend.UserService.model.dto.RegisterAppUserDto;
+import ru.backend.UserService.model.dto.requests.RegisterAppUserRequestDto;
 import ru.backend.UserService.services.user.AppUserService;
 
 import java.util.List;
@@ -29,7 +29,7 @@ public class RestAuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<HttpStatus> registerUser(@RequestBody @Valid RegisterAppUserDto registerAppUserDto,
+    public ResponseEntity<HttpStatus> registerUser(@RequestBody @Valid RegisterAppUserRequestDto registerAppUserRequestDto,
                                                    BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             List<String> errors = bindingResult.getFieldErrors().stream()
@@ -38,7 +38,7 @@ public class RestAuthController {
             throw new AddUserException(String.join("; ", errors));
         }
 
-        AppUser newUser = modelMapper.map(registerAppUserDto, AppUser.class);
+        AppUser newUser = modelMapper.map(registerAppUserRequestDto, AppUser.class);
         appUserService.add(newUser);
         return ResponseEntity.ok().build();
     }
